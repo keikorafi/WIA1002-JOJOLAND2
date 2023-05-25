@@ -4,6 +4,10 @@ import java.util.*;
 
 public class StandComparator {
 
+	public static void main(String[] args) {
+		
+    }
+	
     private int compareStandParameter(String param1, String param2) {
         int value1 = getStandParameterValue(param1);
         int value2 = getStandParameterValue(param2);
@@ -13,39 +17,47 @@ public class StandComparator {
 
     private int getStandParameterValue(String parameter) {
         if (parameter == null) {
-            return 1; // Null has the lowest value
+            return 0; // Null has the highest
         } else if (parameter.equals("?")) {
-            return 2;
+            return 1;
         } else if (parameter.equals("E")) {
-            return 3;
+            return 2;
         } else if (parameter.equals("D")) {
-            return 4;
+            return 3;
         } else if (parameter.equals("C")) {
-            return 5;
+            return 4;
         } else if (parameter.equals("B")) {
-            return 6;
+            return 5;
         } else if (parameter.equals("A")) {
-            return 7;
+            return 6;
         } else if (parameter.equals("Infinity")) {
-            return 8;
+            return 7;
         } else {
-            return 0; // Unknown parameter
+            return -1; // Unknown parameter
         }
     }
     
-    public void sorting(ArrayList<stand> StandsList, int[] order) {
+    public ArrayList<stand> sorting(ArrayList<stand> StandsList, int[] order, int[] orderUpDown) {
     	
-    	for (int i = 0; i < StandsList.size() + 1; i++) {
+    	for (int i = 0; i < StandsList.size(); i++) {
+    		for (int j = i + 1; j < StandsList.size(); j++) {
+    			
     			stand stand1 = StandsList.get(i);
-    		for (int j = i + 1; j < StandsList.size() + 1; i++) {
     			stand stand2 = StandsList.get(j);
+    			
+    			
     			for (int b = 0; b < order.length; b++) {
         			if(order[b] == 0) {
         				int result = compareStandParameter(stand1.getDestructivePower(), stand2.getDestructivePower());
         		        if (result != 0) {
-        		        	if (result < 0) {
+        		        	if (result < 0 && orderUpDown[b] == 1) {
         		        		StandsList.set(i, stand2);
         		        		StandsList.set(j, stand1);
+        		        		
+        		        	} else if (result > 0 && orderUpDown[b] == 0) {
+        		        		StandsList.set(i, stand2);
+        		        		StandsList.set(j, stand1);
+        		        		
         		        	}
         		            break;
         		        }
@@ -53,9 +65,14 @@ public class StandComparator {
         			if(order[b] == 1) {
         				int result = compareStandParameter(stand1.getSpeed(), stand2.getSpeed());
         		        if (result != 0) {
-        		        	if (result < 0) {
+        		        	if (result < 0 && orderUpDown[b] == 1) {
         		        		StandsList.set(i, stand2);
         		        		StandsList.set(j, stand1);
+        		        		
+        		        	} else if (result > 0 && orderUpDown[b] == 0) {
+        		        		StandsList.set(i, stand2);
+        		        		StandsList.set(j, stand1);
+        		        		
         		        	}
         		            break;
         		        }
@@ -63,9 +80,14 @@ public class StandComparator {
         			if(order[b] == 2) {
         				int result = compareStandParameter(stand1.getRange(), stand2.getRange());
         		        if (result != 0) {
-        		        	if (result < 0) {
+        		        	if (result < 0 && orderUpDown[b] == 1) {
         		        		StandsList.set(i, stand2);
         		        		StandsList.set(j, stand1);
+        		        		
+        		        	} else if (result > 0 && orderUpDown[b] == 0) {
+        		        		StandsList.set(i, stand2);
+        		        		StandsList.set(j, stand1);
+        		        		
         		        	}
         		            break;
         		        }
@@ -73,9 +95,14 @@ public class StandComparator {
         			if(order[b] == 3) {
         				int result = compareStandParameter(stand1.getStamina(), stand2.getStamina());
         		        if (result != 0) {
-        		        	if (result < 0) {
+        		        	if (result < 0 && orderUpDown[b] == 1) {
         		        		StandsList.set(i, stand2);
         		        		StandsList.set(j, stand1);
+        		        		
+        		        	} else if (result > 0 && orderUpDown[b] == 0) {
+        		        		StandsList.set(i, stand2);
+        		        		StandsList.set(j, stand1);
+        		        		
         		        	}
         		            break;
         		        }
@@ -83,9 +110,14 @@ public class StandComparator {
         			if(order[b] == 4) {
         				int result = compareStandParameter(stand1.getPrecision(), stand2.getPrecision());
         				if (result != 0) {
-        		        	if (result < 0) {
+        					if (result < 0 && orderUpDown[b] == 1) {
         		        		StandsList.set(i, stand2);
         		        		StandsList.set(j, stand1);
+        		        		
+        		        	} else if (result > 0 && orderUpDown[b] == 0) {
+        		        		StandsList.set(i, stand2);
+        		        		StandsList.set(j, stand1);
+        		        		
         		        	}
         		            break;
         		        }
@@ -93,9 +125,29 @@ public class StandComparator {
         			if(order[b] == 5) {
         				int result = compareStandParameter(stand1.getDevelopmentPotential(), stand2.getDevelopmentPotential());
         				if (result != 0) {
-        		        	if (result < 0) {
+        					if (result < 0 && orderUpDown[b] == 1) {
         		        		StandsList.set(i, stand2);
         		        		StandsList.set(j, stand1);
+        		        		
+        		        	} else if (result > 0 && orderUpDown[b] == 0) {
+        		        		StandsList.set(i, stand2);
+        		        		StandsList.set(j, stand1);
+        		        		
+        		        	}
+        		            break;
+        		        }
+        			}
+        			if(order[b] == 6) {
+        				int result = compareStandParameter(stand1.getStand(), stand2.getStand());
+        				if (result != 0) {
+        					if (result < 0 && orderUpDown[b] == 0) {
+        		        		StandsList.set(i, stand2);
+        		        		StandsList.set(j, stand1);
+        		        		
+        		        	} else if (result > 0 && orderUpDown[b] == 1) {
+        		        		StandsList.set(i, stand2);
+        		        		StandsList.set(j, stand1);
+      
         		        	}
         		            break;
         		        }
@@ -104,19 +156,80 @@ public class StandComparator {
         		}
     		}
 		}
-    	
+    	return StandsList;
     }
     
-    public void sort() {
-    	String[] toSort = {"Destructive Power", "Speed", "Range", "Stamina", "Precision", "Development Potential"}; 
+    public ArrayList<resident> sort(ArrayList<resident> residents) {
     	Scanner scanner = new Scanner(System.in);
     	System.out.print("Enter the sorting order: ");
     	String order = scanner.nextLine();
+    	System.out.println();
     	String[] orders = order.split(";");
-    	//to do:
-    	//change order from string to integer according to toSort string (Element of). (.equalsToIgnoreCase)
-    	//implement descending (.contains)
-    	//get only the stands needed in the area
-    	//actually sort them
+    	
+    	int[] orderHeader = new int [orders.length];
+    	int[] orderOrder = new int [orders.length];
+    	
+    	int i = 0;
+    	for (String String : orders) {
+    		if (String.contains("Destructive Power")) {
+    			orderHeader[i] = 0;
+    		} else if(String.contains("Speed")) {
+    			orderHeader[i] = 1;
+    		} else if(String.contains("Range")) {
+    			orderHeader[i] = 2;
+    		} else if(String.contains("Stamina")) {
+    			orderHeader[i] = 3;
+    		} else if(String.contains("Precision")) {
+    			orderHeader[i] = 4;
+    		} else if(String.contains("Development Potential")) {
+    			orderHeader[i] = 5;
+    		} else {
+				orderHeader[i] = 6;
+			}
+    		
+    		if (String.contains("DESC")) {
+    			orderOrder[i] = 0;
+    		} else {
+    			orderOrder[i] = 1;
+			}
+    		i++;
+    	}
+    	
+    	
+    	ArrayList<stand> standsToOrder = new ArrayList<stand>();
+    	ArrayList<resident> residentWithStands = new ArrayList<resident>();
+    	ArrayList<resident> sortedResidents = new ArrayList<resident>();
+    	
+    	for (resident resident: residents) {
+    		if (resident.getStand() != null) {
+    			standsToOrder.add(resident.getStand());
+    			residentWithStands.add(resident);
+    			
+    		}
+    	}
+    	
+    	standsToOrder = sorting(standsToOrder, orderHeader, orderOrder);
+    	
+    	/*
+    	System.out.println(" ");
+    	for(stand stand: standsToOrder) {
+    		System.out.println(stand.getStand());
+    	}
+    	System.out.println(" ");
+    	*/
+    	
+    	for (int j = standsToOrder.size() - 1; j > -1; j--) {
+    		for (resident resident : residentWithStands) {
+    			if (resident.getStand().equals(standsToOrder.get(j))){
+    				residents.remove(resident);
+    				residents.add(0, resident);
+    				break;
+    			}
+    		}
+    	}
+    	System.out.println(" ");
+    	return residents;
     }
+    
+    
 }
