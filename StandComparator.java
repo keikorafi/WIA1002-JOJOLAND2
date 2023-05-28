@@ -138,7 +138,7 @@ public class StandComparator {
         		        }
         			}
         			if(order[b] == 6) {
-        				int result = compareStandParameter(stand1.getStand(), stand2.getStand());
+        				int result = Character.compare(stand1.getStand().charAt(0), stand2.getStand().charAt(0));
         				if (result != 0) {
         					if (result < 0 && orderUpDown[b] == 0) {
         		        		StandsList.set(i, stand2);
