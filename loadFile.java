@@ -84,45 +84,62 @@ public class loadFile{
 
 
     public void displayResidentsInArea(String residentialArea) {
-        ArrayList<resident> sorted = new ArrayList<>();
-        ResidentComparator sorter = new ResidentComparator();
-        StandComparator sorter2 = new StandComparator();
+    ArrayList<resident> residentsInArea = new ArrayList<>();
+    boolean foundResidents = false;
 
-        boolean foundResidents = false;
-        for (resident residents : this.listOfResidents) {
-            if (residents.getResidentialArea().equalsIgnoreCase(residentialArea)) {
-                sorted.add(residents);
-                foundResidents = true;
-            }
-        }
-        if (!foundResidents) {
-            System.out.println("No residents found in the given residential area.");
-        } else {
-            sorter.sort(sorted);
-            sorted = sorter2.sort(sorted);
-            System.out.println("+----+-----------------------+-----+--------+------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
-            System.out.println("| No | Name                  | Age | Gender | Stand            | Destructive Power | Speed | Range | Stamina | Precision | Development Potential |");
-            System.out.println("+----+-----------------------+-----+--------+------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
-            int counter = 1;
-            for (resident resident1 : sorted) {
-                stand residentStand = resident1.getStand();
-                String standName = residentStand != null ? residentStand.getStand() : "N/A";
-                String destructivePower = residentStand != null ? residentStand.getDestructivePower() : "-";
-                String speed = residentStand != null ? residentStand.getSpeed() : "-";
-                String range = residentStand != null ? residentStand.getRange() : "-";
-                String stamina = residentStand != null ? residentStand.getStamina() : "-";
-                String precision = residentStand != null ? residentStand.getPrecision() : "-";
-                String developmentPotential = residentStand != null ? residentStand.getDevelopmentPotential() : "-";
-
-                System.out.printf("| %-2d | %-21s | %-3s | %-6s | %-16s | %-17s | %-5s | %-5s | %-7s | %-9s | %-22s |\n",
-                        counter, resident1.getName(), resident1.getAge(), resident1.getGender(), standName, destructivePower,
-                        speed, range, stamina, precision, developmentPotential);
-
-                counter++;
-            }
-            System.out.println("+----+-----------------------+-----+--------+------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
+    for (resident residents : this.listOfResidents) {
+        if (residents.getResidentialArea().equalsIgnoreCase(residentialArea)) {
+            residentsInArea.add(residents);
+            foundResidents = true;
         }
     }
+
+    if (!foundResidents) {
+        System.out.println("No residents found in the given residential area.");
+    } else {
+        // Print the unsorted table
+        printTable(residentsInArea);
+
+        // Prompt for the sorting order
+
+        // Sort the residents
+        ResidentComparator sorter = new ResidentComparator();
+        StandComparator sorter2 = new StandComparator();
+        sorter.sort(residentsInArea);
+        residentsInArea = sorter2.sort(residentsInArea);
+
+        // Print the sorted table
+        System.out.println("Sorted Table:");
+        printTable(residentsInArea);
+    }
+}
+
+private void printTable(ArrayList<resident> residents) {
+    System.out.println("+----+-----------------------+-----+--------+------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
+    System.out.println("| No | Name                  | Age | Gender | Stand            | Destructive Power | Speed | Range | Stamina | Precision | Development Potential |");
+    System.out.println("+----+-----------------------+-----+--------+------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
+    int counter = 1;
+    for (resident resident1 : residents) {
+        stand residentStand = resident1.getStand();
+        String standName = residentStand != null ? residentStand.getStand() : "N/A";
+        String destructivePower = residentStand != null ? residentStand.getDestructivePower() : "-";
+        String speed = residentStand != null ? residentStand.getSpeed() : "-";
+        String range = residentStand != null ? residentStand.getRange() : "-";
+        String stamina = residentStand != null ? residentStand.getStamina() : "-";
+        String precision = residentStand != null ? residentStand.getPrecision() : "-";
+        String developmentPotential = residentStand != null ? residentStand.getDevelopmentPotential() : "-";
+
+        System.out.printf("| %-2d | %-21s | %-3s | %-6s | %-16s | %-17s | %-5s | %-5s | %-7s | %-9s | %-22s |\n",
+                counter, resident1.getName(), resident1.getAge(), resident1.getGender(), standName, destructivePower,
+                speed, range, stamina, precision, developmentPotential);
+
+        counter++;
+    }
+    System.out.println("+----+-----------------------+-----+--------+------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
+}
+
+
+
 
             		      
 
