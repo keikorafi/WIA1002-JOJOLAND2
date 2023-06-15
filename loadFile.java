@@ -115,6 +115,7 @@ public class loadFile{
 }
 
 private void printTable(ArrayList<resident> residents) {
+	System.out.println("");
 	System.out.println("Resident Information in " +  residents.get(0).getResidentialArea());
     System.out.println("+----+-----------------------+-----+--------+-----------------------+-------------------+-----------+-----------+---------+-----------+-----------------------+");
     System.out.println("| No | Name                  | Age | Gender | Stand                 | Destructive Power | Speed     | Range     | Stamina | Precision | Development Potential |");
@@ -130,13 +131,14 @@ private void printTable(ArrayList<resident> residents) {
         String precision = residentStand != null ? residentStand.getPrecision() : "-";
         String developmentPotential = residentStand != null ? residentStand.getDevelopmentPotential() : "-";
 
-        System.out.printf("| %-2d | %-21s | %-3s | %-6s | %-21s | %-17s | %-9s | %-9s | %-7s | %-9s | %-22s |\n",
+        System.out.printf("| %-2d | %-21s | %-3s | %-6s | %-21s | %-17s | %-9s | %-9s | %-7s | %-9s | %-21s |\n",
                 counter, resident1.getName(), resident1.getAge(), resident1.getGender(), standName, destructivePower,
                 speed, range, stamina, precision, developmentPotential);
 
         counter++;
     }
-    System.out.println("+----+-----------------------+-----+--------+----------------------+-------------------+------------+-----------+--------+-----------+-----------------------+");
+    System.out.println("+----+-----------------------+-----+--------+-----------------------+-------------------+-----------+-----------+---------+-----------+-----------------------+");
+    System.out.println("");
 }
 
 
@@ -162,6 +164,7 @@ private void printTable(ArrayList<resident> residents) {
             System.out.println("14. Savage Garden");
 
             Scanner scanner = new Scanner(System.in);
+            System.out.println("");
             System.out.print("Enter the number corresponding to the residential area: ");
             int choice = scanner.nextInt();
 
