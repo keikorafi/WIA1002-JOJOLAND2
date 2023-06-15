@@ -115,9 +115,9 @@ public class loadFile{
 }
 
 private void printTable(ArrayList<resident> residents) {
-    System.out.println("+----+-----------------------+-----+--------+------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
-    System.out.println("| No | Name                  | Age | Gender | Stand            | Destructive Power | Speed | Range | Stamina | Precision | Development Potential |");
-    System.out.println("+----+-----------------------+-----+--------+------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
+    System.out.println("+----+-----------------------+-----+--------+-----------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
+    System.out.println("| No | Name                  | Age | Gender | Stand                 | Destructive Power | Speed | Range | Stamina | Precision | Development Potential |");
+    System.out.println("+----+-----------------------+-----+--------+-----------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
     int counter = 1;
     for (resident resident1 : residents) {
         stand residentStand = resident1.getStand();
@@ -129,13 +129,13 @@ private void printTable(ArrayList<resident> residents) {
         String precision = residentStand != null ? residentStand.getPrecision() : "-";
         String developmentPotential = residentStand != null ? residentStand.getDevelopmentPotential() : "-";
 
-        System.out.printf("| %-2d | %-21s | %-3s | %-6s | %-16s | %-17s | %-5s | %-5s | %-7s | %-9s | %-22s |\n",
+        System.out.printf("| %-2d | %-21s | %-3s | %-6s | %-21s | %-17s | %-5s | %-5s | %-7s | %-9s | %-22s |\n",
                 counter, resident1.getName(), resident1.getAge(), resident1.getGender(), standName, destructivePower,
                 speed, range, stamina, precision, developmentPotential);
 
         counter++;
     }
-    System.out.println("+----+-----------------------+-----+--------+------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
+    System.out.println("+----+-----------------------+-----+--------+----------------------+-------------------+-------+-------+---------+-----------+-----------------------+");
 }
 
 
